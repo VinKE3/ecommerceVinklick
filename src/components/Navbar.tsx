@@ -6,7 +6,28 @@ import dynamic from "next/dynamic";
 // import NavIcons from "./NavIcons";
 
 const NavIcons = dynamic(() => import("./NavIcons"), { ssr: false });
-
+const Links = [
+  {
+    title: "Inicio",
+    href: "/",
+  },
+  {
+    title: "Tienda",
+    href: "/tienda",
+  },
+  {
+    title: "Ofertas",
+    href: "/ofertas",
+  },
+  {
+    title: "Nosotros",
+    href: "/nosotros",
+  },
+  {
+    title: "Contacto",
+    href: "/contacto",
+  },
+];
 const Navbar = () => {
   return (
     <div className="h-20 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 relative">
@@ -26,11 +47,13 @@ const Navbar = () => {
             <div className="text-2xl tracking-wide">VinKlick</div>
           </Link>
           <div className="hidden xl:flex gap-4">
-            <Link href="/">Inicio</Link>
-            <Link href="/">Tienda</Link>
-            <Link href="/">Ofertas</Link>
-            <Link href="/">Nosotros</Link>
-            <Link href="/">Contacto</Link>
+            {Links.map(({ href, title }) => {
+              return (
+                <Link className="hover:text-lama" href={href} key={title}>
+                  {title}
+                </Link>
+              );
+            })}
           </div>
         </div>
         {/* RIGHT */}

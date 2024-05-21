@@ -6,7 +6,32 @@ import { useState } from "react";
 
 const Menu = () => {
   const [open, setOpen] = useState(false);
-
+  const Links = [{
+    title: "Inicio",
+    href: "/",
+  }, {
+    title: "Tienda",
+    href: "/tienda",
+  }, {
+    title: "Ofertas",
+    href: "/ofertas",
+  }, {
+    title: "Nosotros",
+    href: "/nosotros",
+  }, {
+    title: "Contacto",
+    href: "/contacto",
+  },
+  {
+    title: "Salir",
+    href: "/salir",
+  },
+  {
+    title: "Carrito(1)",
+    href: "/carrito",
+  },
+   
+]
   return (
     <div className="">
       <Image
@@ -19,13 +44,14 @@ const Menu = () => {
       />
       {open && (
         <div className="absolute bg-black text-white left-0 top-20 w-full h-[calc(100vh-80px)] flex flex-col items-center justify-center gap-8 text-xl  z-10">
-          <Link href="/">Inicio</Link>
-          <Link href="/">Tienda</Link>
-          <Link href="/">Ofertas</Link>
-          <Link href="/">Nosotros</Link>
-          <Link href="/">Contacto</Link>
-          <Link href="/">Salir</Link>
-          <Link href="/">Carrito(1)</Link>
+          {
+             Links.map(({
+              href,
+              title
+             })=>{
+              return <Link className="hover:bg-white hover:text-black transition-all duration-300 ease-in-out rounded-md p-2" href={href} key={title}>{title}</Link>
+             })
+           }
         </div>
       )}
     </div>
